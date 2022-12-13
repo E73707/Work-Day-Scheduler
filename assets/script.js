@@ -15,7 +15,7 @@ function setlocal(item) {
 let submitItem = function () {
   event.preventDefault();
   var btn = $(event.target);
-  console.log(btn);
+  // console.log(btn);
   var textValue = btn.siblings("textarea").val().trim();
   var btnId = btn.parent().attr("id");
   window.localStorage.setItem(`${btnId}`, JSON.stringify(textValue));
@@ -27,16 +27,32 @@ setInterval(function () {
   $("#currentTime").text(time);
 });
 
-// var time24hr = dayjs().hour();
+var time24hr = dayjs().hour();
 
-var time24hr = 0;
+for (
+  let i = 0;
+  i < $("#container").children(".row").children("textarea").length;
+  i++
+) {
+  let divi = $("#container").children(".row")[i];
+  $("#container").children(".row")[i];
+  newItem = JSON.parse(window.localStorage.getItem(divi.id));
+  if (newItem === null) {
+    $("textarea")[i].append("");
+  } else {
+    $("textarea")[i].append(newItem);
+  }
+}
 
 var date = dayjs().format("MMMM D, YYYY");
 $("#currentDay").text(date);
 
-for (let i = 0; i < $("#container").children(".row").length; i++) {
+for (
+  let i = 0;
+  i < $("#container").children(".row").children("textarea").length;
+  i++
+) {
   let divi = $("#container").children(".row")[i];
-  console.log(time24hr);
   if (divi.id.slice(5) < time24hr) {
     $(`#hour-${divi.id.slice(5)}`).css("background-color", "red");
   } else if (divi.id.slice(5) == time24hr) {
