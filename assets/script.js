@@ -17,7 +17,7 @@ $(function () {
 
     var textValue = btn.siblings("textarea").val().trim();
     var btnId = btn.parent().attr("id");
-    window.localStorage.setItem(`${btnId}`, JSON.stringify(textValue));
+    localStorage.setItem(`${btnId}`, JSON.stringify(textValue));
   };
 
   saveBtn.on("click", submitItem);
@@ -27,7 +27,7 @@ $(function () {
     $("#currentTime").text(time);
   });
   var time24hr = dayjs().hour();
-  window.localStorage.setItem("time24hr", JSON.stringify(time24hr));
+  localStorage.setItem("time24hr", JSON.stringify(time24hr));
   let refreshColors = function () {
     for (
       let i = 0;
@@ -55,7 +55,7 @@ $(function () {
     }
     setInterval(function () {
       time24hr = dayjs().hour();
-      window.localStorage.setItem(`time24hr`, JSON.stringify(time24hr));
+      localStorage.setItem(`time24hr`, JSON.stringify(time24hr));
       console.log("done");
       refreshColors();
       refreshOnHour();
